@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zapis do localStorage</title>
+</head>
+<body>
+
+    <input type="file" />
+    <button id="save">Zapisz</button>
+    <div class="output"></div>
+
+    <script>
+        const fileInput = document.querySelector("input[type=file]");
+        const output = document.querySelector(".output");
+        const saveBtn = document.querySelector("#save");
+
+        fileInput.addEventListener("change", async () => {
+            const [file] = fileInput.files;
+            if (file) {
+                output.innerText = await file.text();
+            }
+        });
+
+        saveBtn.addEventListener("click", () => {
+            localStorage.setItem("plik_tekst", output.innerText);
+        });
+    </script>
+</body>
+</html>
