@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Prześlij plik</title>
+    <style>
+        .output {
+            overflow: scroll;
+            margin: 1rem 0;
+            height: 200px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Wybierz plik:</h1>
+
+    <input type="file" />
+    <div class="output"></div>
+
+    <script>
+        const fileInput = document.querySelector("input[type=file]");
+        const output = document.querySelector(".output");
+
+        fileInput.addEventListener("change", async () => {
+            const [file] = fileInput.files;
+
+            if (file) {
+                output.innerText = await file.text();
+            }
+        });
+    </script>
+</body>
+</html>
